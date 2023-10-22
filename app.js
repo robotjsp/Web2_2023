@@ -8,7 +8,8 @@ const app = express();
 //Middlewares (Capa intermedia) Se ejecuta antes
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-//app.use(cors({origin:'*'}))
+var cors = require('cors');
+app.use(cors());
 
 //Importar las rutas
 const RutaDirectores = require('./routes/rdirector');
@@ -18,12 +19,18 @@ const RutaTipos = require('./routes/rtipo');
 const RutaMedias = require('./routes/rmedia');
 // todo: Middlewares fotos
 
+
 // todo: Middlewares cors
 app.use('/api/directores', RutaDirectores);
 app.use('/api/generos', RutaGeneros);
 app.use('/api/productoras', RutaProductoras);
 app.use('/api/tipos', RutaTipos);
 app.use('/api/medias', RutaMedias);
+
+app.all('*', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+  });
 
 //The next method is GET or endpoint to query DB
 app.get('/', (req,res) => {
