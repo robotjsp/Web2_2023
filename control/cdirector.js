@@ -12,7 +12,7 @@ const createDir = async (req = request, res = response) => {
         const name = (req.body.name) ? req.body.name.toString() : '';
         const directorJSON_Query = await directorJSON.findOne({name})
         if (directorJSON_Query) {
-            return res.status(400).json({ msg: 'File cdirector| ❌ Error: Nombre de director repetido. 🛈 Esta acción no modificará la DB' })
+            return res.status(400).json({ msg: 'File cdirector| ❎ Error: Nombre de director repetido. 🛈 Esta acción no modificará la DB' })
         }
         const data = {name}
         const JSON = new directorJSON(data)
@@ -22,7 +22,7 @@ const createDir = async (req = request, res = response) => {
         res.status(201).json(JSON)
     } catch (e) {
         console.log(e)
-        return res.status(500).json({ msg: 'File cdirector| ❌ Error durante la solicitud para crear:', e })
+        return res.status(500).json({ msg: 'File cdirector| ❎ Error durante la solicitud para crear:', e })
     }
 }
 // Read by ID ------------------------------------------------------------
@@ -35,7 +35,7 @@ const getDirbyID = async (req = request, res = response) => {
         return res.json(directorJSON_QuerybyId)
     } catch (e) {
         console.log(e)
-        return res.status(500).json({ msg: 'File cdirector| ❌ Error durante la lectura:',e })
+        return res.status(500).json({ msg: 'File cdirector| ❎ Error durante la lectura:',e })
     }
 }
 
@@ -49,7 +49,7 @@ const getDir = async (req = request, res = response) => {
         return res.json(directorJSON_Query)
     } catch (e) {
         console.log(e)
-        return res.status(500).json({ msg: 'File cdirector| ❌ Error durante la lectura:',e })
+        return res.status(500).json({ msg: 'File cdirector| ❎ Error durante la lectura:',e })
     }
 }
 
@@ -71,7 +71,7 @@ const updateDir = async (req = request, res = response) => {
         return res.json(directorJSON_Query)
     }catch(e){
         console.log(e)
-        return res.status(500).json({msg: 'File cdirector| ❌ Error durante la actualizacion:',e})
+        return res.status(500).json({msg: 'File cdirector| ❎ Error durante la actualizacion:',e})
     }
 }
 
@@ -84,13 +84,13 @@ const deleteDir = async (req = request, res = response) => {
         const id = req.params.id
         const directorJSON_QuerybyId = await directorJSON.findById(id)
         if (!directorJSON_QuerybyId) {
-            return res.status(404).json({ msg: 'File cdirector| 🛈 Este Id no existe en nuestra BD' })
+            return res.status(404).json({ msg: 'File cdirector| ℹ️ Este Id no existe en nuestra BD' })
         }
         await directorJSON.findByIdAndDelete(id)
         return res.status(404).json({ msg: 'File cdirector| ✔️ Elemento eliminado con exito' })
     } catch (e) {
         console.log(e)
-        return res.status(500).json({ msg: 'File cdirector| ❌ Error durante la solicitud para eliminar:', e })
+        return res.status(500).json({ msg: 'File cdirector| ❎ Error durante la solicitud para eliminar:', e })
     }
 }
 module.exports = {

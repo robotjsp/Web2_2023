@@ -11,11 +11,11 @@ const mongoconnection = async () => {
         useNewUrlParser: true, 
         useUnifiedTopology: true,
     });
-    console.log('File Datalink| ✔️ Base de Datos en linea 🖥️...')
+    console.log('File Datalink| ✅ Base de Datos en linea ⚙️...')
     }catch(e){
-        console.log('Datalink reply| 🛈 Error: Falló la conexion debido a: ', e);
+        console.log('Datalink reply| ❎ Error: Falló la conexion debido a: ', e);
         //Crear un nuevo error
-        throw new Error('New Issue about : Error de conexion');
+        throw new Error('New Issue about : ❎ Error de conexion');
     }
 };
 

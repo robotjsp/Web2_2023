@@ -11,6 +11,6 @@ app.set('port',process.env.PORT || 4000)
 const conexion = mongoconnection();
 //Definimos devolución de llamada y llamamos como parametro el objeto
 app.listen(app.get('port'), ()=>{
-console.log(`File Server| ✔️ Conexion Exitosa: 🛈 Internet port # ${app.get('port')}`);
+console.log(`File Server| 🆗 Conexion Exitosa: ℹ️ Internet port # ${app.get('port')}`);
 });
 //Si el servidor ejecuta esto, la conexión fue exitosa
